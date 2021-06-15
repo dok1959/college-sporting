@@ -1,2 +1,2 @@
 # college-sporting
-Completed technical tasks
+Сайт на Asp.net core для некой компании работающей в спортивном секторе
