@@ -1,0 +1,48 @@
+﻿@model CollegeSporting.Models.TechnicidentsViewModel
+
+@{
+    ViewData["Title"] = "List Incidents For Technician";
+}
+
+<div>
+    <h1 class="display-4">Technician: @Model.GetTechnicianName()</h1>
+    <h1 class="display-4">Assigned/Open Incidents</h1>
+    @if (Model.Incidents.Count() > 0)
+    {
+    <table class="table table-striped w-auto border table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Product</th>
+                <th scope="col">Date Opened</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Incidents)
+            {
+                <tr>
+                    <td>@p.Title</td>
+                    <td>@Model.GetCustomerFullName(p.CustomerId)</td>
+                    <td>@Model.GetProductName(p.ProductId)</td>
+                    @if (p.DateOpened.HasValue)
+                    {
+                        <td>@p.DateOpened.Value.ToString("MM/dd/yyyy")</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    <td><a class="btn btn-primary" asp-action="Edit" asp-route-id="@p.Id">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    else
+    {
+        <h3>There are no open incidents</h3>
+    }
+    <a class="btn btn-primary" asp-action="Get">Switch Technician</a>
+</div>

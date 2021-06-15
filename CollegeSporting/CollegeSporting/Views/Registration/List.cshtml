@@ -1,0 +1,42 @@
+﻿@model CollegeSporting.Models.RegistrationsViewModel
+
+@{
+    ViewData["Title"] = "Registrations";
+}
+
+<div>
+    <h1 class="display-4">Customer: @Model.Customer.GetFullName()</h1>
+    <h1 class="display-4">Registrations</h1>
+    @if (Model.Registrations.Count() > 0)
+    {
+        <table class="table table-striped w-auto border table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.Registrations)
+                {
+                    <tr>
+                        <td>@(Model.Products.First(prod => prod.Id == p.ProductId).Name)</td>
+                        <td><a class="btn btn-primary" asp-action="DeleteRegistration" asp-route-id="@p.Id">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3>There are no products registered for the selected customer</h3>
+    }
+    <h1 class="display-4" style="margin-top: 20px;">Product</h1>
+    <form method="post" asp-action="Register">
+        <div class="validation" asp-validation-summary="All"></div>
+        <input type="hidden" name="CustomerId" value="@Model.Customer.Id">
+        <select class="form-row form-control border table-bordered rounded" name="ProductId" asp-items=@(new SelectList(Model.Products, "Id", "Name"))>
+        </select>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>

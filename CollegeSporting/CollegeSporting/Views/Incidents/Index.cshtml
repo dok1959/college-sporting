@@ -1,0 +1,48 @@
+﻿@model CollegeSporting.Models.IncidentsViewModel
+
+@{
+    ViewData["Title"] = "Incident Manager";
+}
+
+<div>
+    <h1 class="display-4">Incident Manager</h1>
+    <ul class="nav nav-pills" style="margin-bottom:20px;">
+
+        <li class="nav-item"><a class="nav-link @(Model?.Filter == "all" ? "active" : "")" asp-route-filter="all">All incidents</a></li>
+        <li class="nav-item"><a class="nav-link @(Model?.Filter == "unassigned" ? "active" : "")" asp-route-filter="unassigned">Unassigned incidents</a></li>
+        <li class="nav-item"><a class="nav-link @(Model?.Filter == "open" ? "active" : "")" asp-route-filter="open">Open incidents</a></li>
+    </ul>
+    <table class="table table-striped w-auto border table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Product</th>
+                <th scope="col">Date Opened</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Incidents)
+            {
+                <tr>
+                    <td>@p.Title</td>
+                    <td>@Model.GetCustomerFullName(p.CustomerId)</td>
+                    <td>@Model.GetProductName(p.ProductId)</td>
+                    @if (p.DateOpened.HasValue)
+                    {
+                        <td>@p.DateOpened.Value.ToString("MM/dd/yyyy")</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    <td><a class="btn btn-primary" asp-action="EditIncident" asp-route-id="@p.Id">Edit</a></td>
+                    <td><a class="btn btn-primary" asp-action="DeleteIncident" asp-route-id="@p.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" asp-action="AddIncident">Add Incident</a>
+</div>

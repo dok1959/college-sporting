@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CollegeSporting.Models.Technician>
+
+@{
+    ViewData["Title"] = "Technician Manager";
+}
+
+<div>
+    <h1 class="display-4">Technician Manager</h1>
+    <table class="table table-striped w-auto border table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@p.Email</td>
+                    <td><a href="#">@p.GetCorrectPhoneNumber()</a></td>
+                    <td><a class="btn btn-primary" asp-action="EditTechnician" asp-route-id="@p.Id">Edit</a></td>
+                    <td><a class="btn btn-primary" asp-action="DeleteTechnician" asp-route-id="@p.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" asp-action="AddTechnician">Add Technician</a>
+</div>

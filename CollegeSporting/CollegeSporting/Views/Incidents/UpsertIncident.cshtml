@@ -1,0 +1,60 @@
+﻿@model CollegeSporting.Models.IncidentViewModel
+
+@{
+    ViewData["Title"] = @ViewBag.Title;
+}
+
+<div>
+    <h1 class="display-4">@ViewBag.Title</h1>
+    <form method="post" asp-action=@Model.ActionPage>
+        <div>
+            <div class="validation" asp-validation-summary="All"></div>
+            @if (Model.Incident != null)
+            {
+                <input type="hidden" name="Id" value="@Model.Incident?.Id">
+            }
+            <div class="form-group">
+                <label class="form-row">Customer</label>
+                <select class="form-row form-control border table-bordered rounded" name="CustomerId" asp-items=@(new SelectList(Model.Customers, "Id", "FullName", Model.Incident?.CustomerId))>
+                    <option value="0">Select the customer...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Product</label>
+                <select class="form-row form-control border table-bordered rounded" name="ProductId" asp-items=@(new SelectList(Model.Products, "Id", "Name", Model.Incident?.ProductId))>
+                    <option value="0">Select a product...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Title</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="Title" value="@Model.Incident?.Title">
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Description</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="Description" value="@Model.Incident?.Description">
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Technician</label>
+                <select class="form-row form-control border table-bordered rounded" name="TechnicianId" asp-items=@(new SelectList(Model.Technicians, "Id", "Name", Model.Incident?.TechnicianId))>
+                    <option value="">Assign a technician...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Date Opened</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="DateOpened" value="@Model.Incident?.GetDateTime(Model.Incident?.DateOpened)">
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Date Closed</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="DateClosed" value="@Model.Incident?.GetDateTime(Model.Incident?.DateClosed)">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-primary" asp-action="Index">Cancel</a>
+    </form>
+</div>

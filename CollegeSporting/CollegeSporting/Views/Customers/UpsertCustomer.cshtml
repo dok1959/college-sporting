@@ -1,0 +1,129 @@
+﻿@model CollegeSporting.Models.Customer
+
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+
+<div>
+    <h1 class="display-4">@ViewBag.Title</h1>
+    <form method="post" asp-action=@ViewBag.Action>
+        <div>
+            <div class="validation" asp-validation-summary="None"></div>
+            @if (Model != null)
+            {
+                <input type="hidden" name="Id" value="@Model?.Id">
+            }
+            <div class="form-group">
+                <label class="form-row">First Name</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="FirstName" value="@Model?.FirstName">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="FirstName" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Last Name</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="LastName" value="@Model?.LastName">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="LastName" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Address</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="Address" value="@Model?.Address">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="Address" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">City</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="City" value="@Model?.City">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="City" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">State</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="State" value="@Model?.State">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="State" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">PostalCode</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="PostalCode" value="@Model?.PostalCode">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="PostalCode" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Country</label>
+                <div class="form-row">
+                    <div class="col">
+                        <select class="form-row form-control border table-bordered rounded" asp-for="CountryId" asp-items="@ViewBag.Countries">
+                            <option value="">Select a country...</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="CountryId" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Email</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="Email" value="@Model?.Email">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="Email" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Phone</label>
+                <div class="form-row">
+                    <div class="col">
+                        <input class="form-row form-control border table-bordered rounded" type="text" asp-for="Phone" value="@Model?.Phone">
+                    </div>
+                    <div class="col">
+                        <div><span asp-validation-for="Phone" class="text-danger"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-primary" asp-action="Index">Cancel</a>
+    </form>
+</div>

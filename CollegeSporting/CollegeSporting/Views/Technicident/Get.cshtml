@@ -1,0 +1,16 @@
+﻿@model CollegeSporting.Models.Technician
+
+@{
+    ViewData["Title"] = "Get Technician";
+}
+
+<div>
+    <h1 class="display-4">Technician</h1>
+    <form method="post" asp-action="Get">
+        <div class="validation" asp-validation-summary="All"></div>
+        <select class="form-row form-control border table-bordered rounded" name="Id" asp-items=@(new SelectList(ViewBag.Technicians, "Id", "Name"))>
+            <option value="">Select a technician...</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Select</button>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+﻿@model CollegeSporting.Models.Product
+
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+
+<div>
+    <h1 class="display-4">@ViewBag.Title</h1>
+    <form method="post" asp-action=@ViewBag.Action>
+        <div>
+            <div class="validation" asp-validation-summary="All"></div>
+            @if (Model != null)
+            {
+                <input type="hidden" name="Id" value=@Model?.Id>
+            }
+            <div class="form-group">
+                <label class="form-row">Code</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="Code" value="@Model?.Code">
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Name</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="Name" value="@Model?.Name">
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Yearly Price</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="Price" value="@Model?.Price">
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Release Date</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="Release" value="@Model?.Release">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-primary" asp-action="Index">Cancel</a>
+    </form>
+</div>

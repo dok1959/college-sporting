@@ -1,0 +1,16 @@
+﻿@model CollegeSporting.Models.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Registrations";
+}
+
+<div>
+    <h1 class="display-4">Get Customer</h1>
+    <form method="post" asp-action="GetCustomer">
+        <div class="validation" asp-validation-summary="All"></div>
+        <select class="form-row form-control border table-bordered rounded" name="Id" asp-items=@(new SelectList(ViewBag.Customers, "Id", "FullName"))>
+            <option value="">Select a customer...</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Select</button>
+    </form>
+</div>

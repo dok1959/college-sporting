@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CollegeSporting.Models.Customer>
+
+@{ 
+    ViewData["Title"] = "Customer Manager";
+}
+
+<div>
+    <h1 class="display-4">Customer Manager</h1>
+    <table class="table table-striped w-auto border table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">City</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@(p.GetFullName())</td>
+                    <td>@p.Email</td>
+                    <td>@p.City</td>
+                    <td><a class="btn btn-primary" asp-action="EditCustomer" asp-route-id="@p.Id">Edit</a></td>
+                    <td><a class="btn btn-primary" asp-action="DeleteCustomer" asp-route-id="@p.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" asp-action="AddCustomer">Add Customer</a>
+</div>

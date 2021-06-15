@@ -1,0 +1,72 @@
+﻿@model CollegeSporting.Models.TechnicidentViewModel
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Edit Incident";
+}
+
+<div>
+    <h1 class="display-4">@ViewBag.Title</h1>
+    <form method="post" asp-action="Edit">
+        <div>
+            <div class="validation" asp-validation-summary="All"></div>
+            <input type="hidden" name="Id" value="@Model.Incident.Id">
+
+            <div class="form-row" style="margin-bottom: 20px">
+                <div class="col">
+                    <label class="form-row">Technician</label>
+                </div>
+                <div class="col">
+                    <label>@Model.Technician</label>
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 20px">
+                <div class="col">
+                    <label class="form-row">Customer</label>
+                </div>
+                <div class="col">
+                    <label>@Model.Customer</label>
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 20px">
+                <div class="col">
+                    <label class="form-row">Product</label>
+                </div>
+                <div class="col">
+                    <label>@Model.Product</label>
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 20px">
+                <div class="col">
+                    <label class="form-row">Title</label>
+                </div>
+                <div class="col">
+                    <label>@Model.Incident?.Title</label>
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 20px">
+                <div class="col">
+                    <label class="form-row">Date Opened</label>
+                </div>
+                <div class="col">
+                    <label>@Model.Incident?.GetDateTime(Model.Incident?.DateOpened)</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Description</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="Description" value="@Model.Incident?.Description">
+            </div>
+
+            <div class="form-group">
+                <label class="form-row">Date Closed</label>
+                <input class="form-row form-control border table-bordered rounded" type="text" name="DateClosed" value="@Model.Incident?.GetDateTime(Model.Incident?.DateClosed)">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-primary" asp-action="List" asp-route-id="@HttpContextAccessor.HttpContext.Session.GetString("TechnicianId")">Cancel</a>
+    </form>
+</div>

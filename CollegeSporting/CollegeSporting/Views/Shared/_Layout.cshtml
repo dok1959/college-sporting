@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SportsPro</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .input-validation-error { border: 4px solid #ff0000; background-color: #f1f8c8;}
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SportsPro</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item @(ViewBag.Title == "Home Page" ? "active" : "")">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item @(ViewBag.Title == "Products" ? "active" : "")">
+                            <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                        </li>
+                        <li class="nav-item @(ViewBag.Title == "Technician Manager" ? "active" : "")">
+                            <a class="nav-link" asp-area="" asp-controller="Technicians" asp-action="Index">Technicians</a>
+                        </li>
+                        <li class="nav-item @(ViewBag.Title == "Customer Manager" ? "active" : "")">
+                            <a class="nav-link" asp-area="" asp-controller="Customers" asp-action="Index">Customers</a>
+                        </li>
+                        <li class="nav-item @(ViewBag.Title == "Incident Manager" ? "active" : "")">
+                            <a class="nav-link" asp-area="" asp-controller="Incidents" asp-action="Index">Incidents</a>
+                        </li>
+                        <li class="nav-item @(ViewBag.Title == "Registrations" ? "active" : "")">
+                            <a class="nav-link" asp-area="" asp-controller="Registration" asp-action="GetCustomer">Registrations</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item @(ViewBag.Title == "About Page" ? "active" : "")">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if(TempData["message"] != null)
+            {
+                <div class="alret alert-success"> @TempData["message"] </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
